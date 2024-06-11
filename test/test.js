@@ -2,7 +2,17 @@
 
 const path = require('path')
 const expect = require('expect.js')
+const express = require('express')
+
+const expressIsGoogleCrawler = require(path.join(__dirname, '..', 'index.js'))
 const { loadIps, isIpfromGoogle } = require(path.join(__dirname, '..', 'main.js'))
+
+describe('express', function () {
+  it('Middleware is correctly passed', async () => {
+    const app = express()
+    app.use(expressIsGoogleCrawler)
+  })
+})
 
 describe('Google bots/crawlers IPs', async function () {
   before(async () => {
