@@ -1,6 +1,6 @@
 {
   "name": "express-is-googlecrawler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Express middleware that informs if request originates from a Google Bot or a Google Crawler",
   "main": "index.js",
   "scripts": {
