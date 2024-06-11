@@ -17,11 +17,9 @@ function loadIps () {
   return new Promise((resolve, reject) => {
     axios.all([
       axios.get(googleBotsUrl, {
-        method: 'get',
         responseType: 'json'
       }),
       axios.get(googleCrawlersUrl, {
-        method: 'get',
         responseType: 'json'
       })
     ])
