@@ -1,0 +1,24 @@
+{
+  "name": "express-is-googlecrawler",
+  "version": "1.0.0",
+  "description": "Express middleware that informs if request originates from a Google Bot or a Google Crawler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfoclpf/express-is-googlecrawler.git"
+  },
+  "keywords": [
+    "express",
+    "google",
+    "googlebot"
+  ],
+  "author": "João Pimentel Ferreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jfoclpf/express-is-googlecrawler/issues"
+  },
+  "homepage": "https://github.com/jfoclpf/express-is-googlecrawler#readme"
+}

@@ -6,7 +6,7 @@ Instead of making a new DNS request for every incoming request, it stores in-mem
 
 ## Install
 
-```
+```sh
 npm i express-is-googlecrawler
 ```
 
