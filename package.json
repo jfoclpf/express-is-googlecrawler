@@ -15,6 +15,9 @@
     "google",
     "googlebot"
   ],
+  "engines" : { 
+    "node" : ">=14.18.0"
+  },
   "author": "João Pimentel Ferreira",
   "license": "MIT",
   "bugs": {
