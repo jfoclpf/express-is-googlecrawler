@@ -1,15 +1,26 @@
 const axios = require('axios')
 const net = require('node:net')
+const { Agent } = require('https')
 
 // indeed a whitelist for Googlebot
 const blockList = new net.BlockList()
+let httpsAgent
 
 // see for more info: https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot
-
 // JSON with Googlebots IP ranges
 const googleBotsUrl = 'https://developers.google.com/static/search/apis/ipranges/googlebot.json'
 // JSON with Google crawlers IP ranges
-const googleCrawlersUrl = 'https://developers.google.com/static/search/apis/ipranges/special-crawlers.json'
+const googleCrawlersUrl = 'https://developers.google.com/static/search/apis/ipranges/special-crawlers.json';
+
+(async () => {
+  // Create a new resolver instance (does not affect global DNS settings)
+  const CacheableLookup = (await import('cacheable-lookup')).default // Dynamic import for ESM module
+  const cacheable = new CacheableLookup()
+  // Use Google DNS servers to resolve the urls
+  cacheable.setServers(['8.8.8.8', '8.8.4.4'])
+  httpsAgent = new Agent()
+  cacheable.install(httpsAgent)
+})()
 
 module.exports = { loadIps, isIpfromGoogle }
 
@@ -17,10 +28,12 @@ function loadIps () {
   return new Promise((resolve, reject) => {
     axios.all([
       axios.get(googleBotsUrl, {
-        responseType: 'json'
+        responseType: 'json',
+        httpsAgent
       }),
       axios.get(googleCrawlersUrl, {
-        responseType: 'json'
+        responseType: 'json',
+        httpsAgent
       })
     ])
       .then(axios.spread((googleBots, googleCrawlers) => {
