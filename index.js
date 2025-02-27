@@ -1,5 +1,4 @@
-const path = require('path')
-const { loadIps, isIpfromGoogle } = require(path.join(__dirname, 'main.js'));
+const { loadIps, isIpfromGoogle } = require('./main.js');
 
 (async () => {
   // loads Google known IPs into memory
