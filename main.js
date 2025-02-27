@@ -48,8 +48,6 @@ function loadIps () {
         console.error('Unable to download or process Google bots/crawlers IP ranges JSON file: ', error.message)
         reject(error)
       })
-    // restore old DNS servers
-    // dns.setServers(oldDnsServers)
   })
 }
 
