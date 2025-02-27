@@ -1,5 +1,6 @@
 const axios = require('axios')
 const net = require('node:net')
+const customLookup = require('./customLookup')
 
 // indeed a whitelist for Googlebot
 const blockList = new net.BlockList()
@@ -16,10 +17,12 @@ function loadIps () {
   return new Promise((resolve, reject) => {
     axios.all([
       axios.get(googleBotsUrl, {
-        responseType: 'json'
+        responseType: 'json',
+        lookup: customLookup
       }),
       axios.get(googleCrawlersUrl, {
-        responseType: 'json'
+        responseType: 'json',
+        lookup: customLookup
       })
     ])
       .then(axios.spread((googleBots, googleCrawlers) => {
@@ -45,6 +48,8 @@ function loadIps () {
         console.error('Unable to download or process Google bots/crawlers IP ranges JSON file: ', error.message)
         reject(error)
       })
+    // restore old DNS servers
+    // dns.setServers(oldDnsServers)
   })
 }
 
